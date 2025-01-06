@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Business Website</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <header>
+        <h1>Welcome to Our Business</h1>
+        <nav>
+            <a href="/">Home</a>
+            <a href="/add_product">Add Product</a>
+            <form action="/search" method="get" class="search-form">
+                <input type="text" name="query" placeholder="Search products..." required>
+                <button type="submit">Search</button>
+            </form>
+        </nav>
+    </header>
+
+    <main>
+        <h2>Available Products</h2>
+        <div class="product-container">
+            {% for product in products %}
+            <div class="product">
+                <img src="{{ product.image }}" alt="{{ product.name }}">
+                <h3>{{ product.name }}</h3>
+                <p>{{ product.description }}</p>
+                <p>Price: ${{ product.price }}</p>
+                <button>Add to Cart</button>
+            </div>
+            {% endfor %}
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 Your Business. All rights reserved.</p>
+    </footer>
+</body>
+</html>
